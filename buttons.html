@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>uPrimer UI elements</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="ui.css" />
+</head>
+<body>
+<div class="holder">
+<h1>uPrimer UI elements</h1>
+</div>
+<hr />
+<div id="buttons" class="holder">
+	<h3>Buttons</h3>
+	<div class="button icon onion"><a href="#">Løg!</a></div>
+	<div class="button"><a href="#">Less!</a></div>
+	<div class="button"><a href="#">Burgers!</a></div>
+	<div class="button"><a href="#" onclick="toggle(this);" title="Toggle on / off">Toggle me!</a></div>
+	<div class="button icon hand"><a href="#" onclick="raise();" title="Raise your hand">Raise hand</a></div>
+    <br style="clear:both"/>
+    <div class="button small"><a href="#" onclick="toggle(this);">Little</a></div>
+    <div class="button small"><a href="#">Mini</a></div>
+    <div class="button small"><a href="#">Button</a></div>
+    <div class="button small"><a href="#">Can you read me?</a></div>
+</div>
+<hr />
+<div class="holder">
+    <h3>Text input</h3>
+    <input type="text" />
+</div>
+<hr />
+<div class="holder">
+    <h3>Different</h3>
+    <label>
+        <input type="checkbox" />
+        Je suis un Check Le Box
+    </label>
+    <label>
+        <input type="checkbox" />
+        Je suis un Check Le Box
+    </label>
+    <label>
+        <input type="checkbox" />
+        Je suis un Check Le Box
+    </label>
+</div>
+<hr />
+<div class="holder">
+    <h3>Interactive</h3>
+    <div class="progress">
+        <div class="wrap">
+            <div id="prog_1"></div>
+        </div>
+    </div>
+</div>
+<script>
+    var p = document.getElementById('prog_1');
+    var w = 0;
+
+    function raise() {
+        alert('raising your hand');
+    }
+
+    function run_progress() {
+        if (w <= 100) {
+            p.style.width = w + '%';
+            p.innerHTML = w + '%';
+            w++;
+        } else {
+            clearInterval(m);
+        }
+    }
+
+    var m = setInterval(run_progress, 50);
+
+    function toggle(el) {
+        var p = el.parentNode;
+        toggleClass(p);
+    }
+
+    function toggleClass(el) {
+        if (/toggle/.test(el.className)) {
+            removeClass(el, 'toggle');
+        } else {
+            addClass(el, 'toggle');
+        }
+    }
+
+
+    function addClass(el, str) {
+        /**************************
+         *
+         * Hyper simple function to add a class to a className - no checking, no
+         * nothing
+         *
+         **************************/
+
+        el.className = el.className + ' ' + str;
+    }
+
+    function removeClass(el, str) {
+        /**************************
+         *
+         * Simple function to remove class from className of element
+         *
+         **************************/
+         
+        var cn = el.className.split(' ');
+        var l = cn.length;
+        var tempCn = [];
+        for (var i=0; i<l; i++) {
+            if (cn[i] != str) {
+                tempCn[tempCn.length] = cn[i];
+            }
+        }
+        el.className = tempCn.join(' ');
+    }
+</script>
+</body>
+</html>
